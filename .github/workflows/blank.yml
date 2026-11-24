@@ -1,0 +1,17 @@
+name: Test cron
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/6 * * * *"   # TESTOVACÍ, po ověření smazat soubor
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Vypsat čas
+        run: |
+          echo "Událost: ${{ github.event_name }}"
+          echo "UTC:   $(date -u)"
+          echo "Praha: $(TZ=Europe/Prague date)"
